@@ -288,7 +288,6 @@ gtk_sources = [
   'gtkrenderbackground.c',
   'gtkrenderborder.c',
   'gtkrendericon.c',
-  'gtkresources.c',
   'gtkrevealer.c',
   'gtkroundedbox.c',
   'gtkscale.c',
@@ -384,6 +383,15 @@ gtk_unix_sources = [
   'gtksearchenginetracker.c',
 ]
 
+gtkresources = gnome.compile_resources(
+  'gtkresources',
+  'gtk.gresource.xml',
+  source_dir: '.',
+  c_name: '_gtk',
+  extra_args: '--manual-register'
+)
+
+
 gtk_x11_sources = [
   'gtkplug.c',
   'gtksocket.c',
@@ -417,6 +425,7 @@ gtk_sources = [
   dnd_sources,
   inspector_sources,
   a11y_sources,
+  gtkresources
 ]
 
 gtk_deps = [
