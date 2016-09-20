@@ -823,7 +823,6 @@ libgtk = shared_library('gtk',
   ],
   include_directories: [ confinc, gdkinc, gtkinc ],
   dependencies: [gtk_deps, libgdk_dep],
-  link_with: libgdk
 )
 
 libgtk_dep = declare_dependency(
@@ -834,6 +833,6 @@ libgtk_dep = declare_dependency(
     gtktypebuiltins_h,
   ],
   dependencies: gtk_deps,
-  link_with: [libgtk, libgdk],
+  link_with: libgtk,
   include_directories: [confinc, gtkinc]
 )
