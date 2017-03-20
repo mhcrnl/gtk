@@ -593,6 +593,8 @@ gtk_public_headers = files([
   'gtkwindowgroup.h',
 ])
 
+install_headers(gtk_public_headers, subdir: 'gtk-4.0/gtk/')
+
 gtk_unix_sources = files([
   'gtkcustompaperunixdialog.c',
   'gtkpagesetupunixdialog.c',
@@ -666,7 +668,7 @@ gtktypebuiltins_h = custom_target(
   input   : gtk_public_headers + gtk_deprecated_headers,
   command : [mkenum, perl, glib_mkenums, meson.current_source_dir() + '/gtktypebuiltins.h.template', '@OUTPUT@', '@INPUT@'],
   install: true,
-  install_dir: 'include/gtk-4.0/gtk/' # XXX ???
+  install_dir: 'include/gtk-4.0/gtk/'
 )
 
 gtktypebuiltins_c = custom_target(
@@ -714,7 +716,7 @@ gtkversion = configure_file(
   input  : 'gtkversion.h.in',
   output : 'gtkversion.h',
   configuration: cdata,
-  install_dir: 'include/gtk-4.0/gtk/' # XXX ???
+  install_dir: 'include/gtk-4.0/gtk/'
 )
 
 gtk_cargs = [
@@ -784,13 +786,6 @@ if x11_enabled or wayland_enabled
 endif
 
 gnome.compile_schemas()
-
-
-# Install necessary headers
-
-# install_headers(gtk_public_headers,     subdir: 'gtk-3.0/gtk/')
-# install_headers(gtk_deprecated_headers, subdir: 'gtk-3.0/gtk/deprecated/')
-# install_headers(a11y_headers,           subdir: 'gtk-3.0/gtk/a11y/')
 
 libgtk = shared_library('gtk',
   sources: [typefuncs, gtk_sources, gtkmarshal_h, gtkprivatetypebuiltins_h],
