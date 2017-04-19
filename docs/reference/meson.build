@@ -10,3 +10,4 @@ version_conf = configuration_data()
 version_conf.set('GTK_VERSION', meson.project_version())
 
 subdir('gdk')
+subdir('gsk')
